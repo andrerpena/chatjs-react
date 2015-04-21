@@ -10,8 +10,6 @@ const argv = yargs
 
 const defaultOptions = {
   development: argv.debug,
-  docs: false,
-  css: false,
   test: false,
   optimize: argv.optimizeMinimize
 };
@@ -22,13 +20,13 @@ export default (options) => {
 
   const config = {
     entry: {
-      'react-ui': './src/index.js'
+      'chatjs': './src/index.js'
     },
 
     output: {
       path: './dist',
       filename: '[name].js',
-      library: 'ReactUI',
+      library: 'ChatJs',
       libraryTarget: 'umd'
     },
 

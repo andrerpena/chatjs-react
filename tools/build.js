@@ -3,7 +3,6 @@
 import from 'colors';
 import path from 'path';
 import bower from './amd/build';
-import docs from '../docs/build';
 import dist from './dist/build';
 import lib from './lib/build';
 import { copy } from './fs-utils';
@@ -23,17 +22,11 @@ const argv = yargs
     .argv;
 
 export default function Build(noExitOnFailure) {
-    if (argv.docsOnly) {
-        return docs();
-    } else {
         let result = Promise.all([
             lib(),
             bower(),
-            dist(),
-            docs()
+            dist()
         ])
-            //.then(() => copy(distFolder, amdFolder));
-
         if (!noExitOnFailure) {
             result = result
                 .catch(err => {
@@ -44,7 +37,5 @@ export default function Build(noExitOnFailure) {
                     process.exit(1);
                 });
         }
-
         return result;
-    }
 }
